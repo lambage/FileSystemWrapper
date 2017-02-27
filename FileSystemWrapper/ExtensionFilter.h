@@ -10,7 +10,7 @@ namespace FileSystemWrapper
 		ExtensionFilter();
 		virtual ~ExtensionFilter();
 
-		void Add(const std::string& extension);
+		ExtensionFilter& Add(const std::string& extension);
 
 		// Inherited via Filter
 		virtual bool Match(const std::string & string_to_match) const override;

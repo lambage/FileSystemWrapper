@@ -13,22 +13,24 @@ namespace FileSystemWrapperUnitTest
 		TEST_METHOD(TestMatches)
 		{
 			auto filter = FSW::ExtensionFilter{};
-			filter.Add("jpeg");  //the dot will be inserted if missing
-			filter.Add("bmp");
-			filter.Add(".gif");
+			filter.Add("jpeg")  //the dot will be inserted if missing
+				  .Add("bmp")
+				  .Add(".gif");
 
 			Assert::IsTrue(filter.Match("test.jpeg"));
 			Assert::IsTrue(filter.Match("test.bmp"));
 			Assert::IsTrue(filter.Match("test.jpeg.jpeg"));
 			Assert::IsTrue(filter.Match("test.jpeg.gif"));
+			Assert::IsTrue(filter.Match("c:\\test.jpeg.gif"));
+			Assert::IsTrue(filter.Match("d:\\somedirectory\\somefile.gif"));
 		}
 
 		TEST_METHOD(TestNonMatches)
 		{
 			auto filter = FSW::ExtensionFilter{};
-			filter.Add("jpeg");  //the dot will be inserted if missing
-			filter.Add("bmp");
-			filter.Add(".gif");
+			filter.Add("jpeg")  //the dot will be inserted if missing
+				  .Add("bmp")
+				  .Add(".gif");
 
 			Assert::IsFalse(filter.Match("test.jpg"));
 			Assert::IsFalse(filter.Match("testbmp"));
@@ -36,6 +38,7 @@ namespace FileSystemWrapperUnitTest
 			Assert::IsFalse(filter.Match("gif"));
 			Assert::IsFalse(filter.Match(""));
 			Assert::IsFalse(filter.Match("1247248"));
+			Assert::IsFalse(filter.Match("C:\\.jpeg"));
 		}
 
 	};
