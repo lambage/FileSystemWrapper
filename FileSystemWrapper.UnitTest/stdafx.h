@@ -4,7 +4,10 @@
 //
 
 #pragma once
-#include <experimental\filesystem>
-#include <vector>
-#include <set>
-#include <string>
+
+#include "targetver.h"
+
+// Headers for CppUnitTest
+#include "CppUnitTest.h"
+
+// TODO: reference additional headers your program requires here
